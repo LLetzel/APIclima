@@ -6,100 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta do Clima</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Consulta do Clima tempo</h1>
-
     <div class="forminteiro">
         <form id="formclima" class="form-texto">
-            <label for="cityInput">Cidade:</label>
-            <input type="text" id="cityInput" name="cityInput"> <br>
+            <h1>Consulta do Clima</h1>
+        
+            <input type="text" id="cityInput" name="cityInput" placeholder="Cidade"> <br>
             <button type="submit">Consultar</button>
         </form>
+        
 
-        <div id="climaResult"></div>
-    </div>
-    <script>
-        function neblina() {
-            var body = document.querySelector('body'); // Seleciona a tag body
-            body.style.backgroundImage = 'url("./gif/neblina.gif")'; // Define a imagem de fundo
-            body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-            body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
-        }
-        function sol() {
-            var body = document.querySelector('body'); // Seleciona a tag body
-            body.style.backgroundImage = 'url("./gif/sun.gif")'; // Define a imagem de fundo
-            body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-            body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
-        }
-
-        function chuvaleve() {
-            var body = document.querySelector('body'); // Seleciona a tag body
-            body.style.backgroundImage = 'url("./gif/chuvaleve.gif")'; // Define a imagem de fundo
-            body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-            body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
-        }
-
-        function banhodechuva() {
-            var body = document.querySelector('body'); // Seleciona a tag body
-            body.style.backgroundImage = 'url("./gif/banhodechuva.gif")'; // Define a imagem de fundo
-            body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-            body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
-        }
-
-        function nublado() {
-            var body = document.querySelector('body'); // Seleciona a tag body
-            body.style.backgroundImage = 'url("./gif/nublado.gif")'; // Define a imagem de fundo
-            body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-            body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
-        }
-
-        function nuvensseparadas() {
-            var body = document.querySelector('body'); // Seleciona a tag body
-            body.style.backgroundImage = 'url("./gif/nuvensseparadas.gif")'; // Define a imagem de fundo
-            body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-            body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
-        }
-
-        document.getElementById('formclima').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const city = document.getElementById('cityInput').value;
-
-            fetch(`http://localhost:3000/climatempo/${city}`)
-                .then(response => response.json())
-                .then(data => {
-
-                    const tempoResult = document.getElementById('climaResult');
-
-                    if (data.Temperatura) {
-
-                        if (data.Clima == 'ceu limpo' || data.Clima == 'Poucas nuvens') {
-                            sol();
-                        } else if (data.Clima == 'Nublado') {
-                            nublado();
-                        } else if (data.Clima == 'nuvens separadas'){
-                            nuvensseparadas()
-                        } else if (data.Clima == 'leve chuva' || data.Clima == 'garoa leve') {
-                            chuvaleve();
-                        } else if (data.Clima == 'neblina' || data.Clima == 'fumaça' || data.Clima == 'névoa') {
-                            neblina();
-                        } else if (data.Clima == 'banho de chuva' || data.Clima == 'chuva media' || data.Clima == 'chuva moderada') {
-                            banhodechuva();
-                        }
-
-                        tempoResult.innerHTML = `Temperatura: ${data.Temperatura}°C <br>
-                    Umidade: ${data.Umidade}% <br>
-                    velocidade do vento: ${data.VelocidadeDoVento} m/s <br>
-                    Descrição do Clima: ${data.Clima};`
-                    } else {
-                        tempoResult.innerHTML = "Erro ao obter dados metereologicos";
-                    }
-                })
-                .catch((error) => console.error("Erro ao obter dados"));
-        });
-    </script>
+        <div id="climaResult">
+            <div class="icons">
+                <p id="city"></p>
+                <img id="cityIcon" src="" alt="">
+            </div>
+            <div class="icons">
+                <p id="temperatura"></p>
+                <img id="temperaturaIcon" src="" alt="Ícone temperatura">
+            </div>
+            <div class="icons">
+                <p id="umidade"></p>
+                <img id="umidadeIcon" src="" alt="Ícone umidade">
+            </div>
+            <div class="icons">
+                <p id="vento"></p>
+                <img id="ventoIcon" src="" alt="ícone vento">
+            </div>
+        </div>
+  
+    <script src="script.js"></script>
 
 </body>
 
