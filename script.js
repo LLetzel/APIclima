@@ -48,7 +48,7 @@ function neveleve() {
 
 function tempestade() {
     var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/RhSt.gif")'; // Define a imagem de fundo
+    body.style.backgroundImage = 'url("./gif/tempestade.gif")'; // Define a imagem de fundo
     body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
     body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
 }
