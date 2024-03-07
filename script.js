@@ -74,20 +74,26 @@ document.getElementById('formclima').addEventListener('submit', function (event)
                 document.getElementById('temperatura').textContent = `${data.Temperatura}°C`;
                 document.getElementById('umidade').textContent = `${data.Umidade}%`;
                 document.getElementById('vento').textContent = `${data.VelocidadeDoVento}m/s`;
+                document.getElementById('descricao').textContent =`${data.Clima}`
 
                 document.getElementById('climaResult').style.display = 'flex';
+                document.getElementById('descricao1').style.display = 'flex';
+                document.getElementById('lupa').style.display = 'flex';
+                document.getElementById('formclima').style.display = 'none';  
                 
 
                 const temperaturaIcon = document.getElementById('temperaturaIcon');
                 const umidadeIcon = document.getElementById('umidadeIcon');
-                const  ventoIcon = document.getElementById('ventoIcon');
+                const ventoIcon = document.getElementById('ventoIcon');
+                const descricaoIcon = document.getElementById('descricaoIcon');
 
                 console.log(city);
 
                 cityIcon.src = "./icones/cidade.png";
-                temperaturaIcon.src = "./icones/celsius.png";
+                temperaturaIcon.src = "./icones/termometro.png";
                 umidadeIcon.src = "./icones/umidade.png";
-                ventoIcon.src = "./icones/vento.png";
+                ventoIcon.src = "./icones/vento2.png";
+                descricaoIcon.src = "./icones/clima.png";
 
 
                 if (data.Clima == 'ceu limpo') {
