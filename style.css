@@ -30,12 +30,15 @@ h1{
 }
 
 body {
+
     margin: 0;
     color: aliceblue;
     background-image: url(./gif/gifs-do-planeta-terra-girando.gif);
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
     transition: 1.5s;
+    height: 92.8vh;
 }
 
 .kdam-thmor pro-regular {
@@ -55,8 +58,8 @@ button {
     font-weight: 600;
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 5px rgba(0, 0, 0.1);
-    margin-top: 40px;
-
+    margin-top: 15vh;
+    transition: all 2s ease;
 }
 
 #cityIcon{
