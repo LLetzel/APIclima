@@ -3,7 +3,7 @@
     backdrop-filter: blur(70px);
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 10px 10px;
-    height: 70%;
+    height: 90%;
     width: 30%;
     margin-left: 32%;
     margin-top: 2%;
@@ -16,18 +16,21 @@
     box-shadow: 0px 10px 100px rgba(0, 0, 0.1);
     font-family: "Kdam Thmor Pro", sans-serif;
     transition: 0.5s;
+    margin: 0 auto;
+    margin-top: 3%;
 }
-h1{
+
+h1 {
     color: rgba(255, 255, 255, 0.5);
     font-family: "Kdam Thmor Pro", sans-serif;
     margin: auto;
-    font-size:24px;
+    font-size: 24px;
 }
 
-#formclima{
-   padding: 10%;
-   text-align: center;
-   transition-duration: 1s;
+#formclima {
+    padding: 10%;
+    text-align: center;
+    transition-duration: 1s;
 
 }
 
@@ -39,16 +42,16 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    transition: 1.5s;
-    height: 92.8vh;
+    transition: 3s;
+    height: 78vh;
 }
 
 .kdam-thmor pro-regular {
     font-family: "Kdam Thmor Pro", sans-serif;
     font-weight: 400;
     font-style: normal;
-  }
-  
+}
+
 button {
     width: 80%;
     height: 30px;
@@ -64,38 +67,38 @@ button {
     transition: all 2s ease;
 }
 
-#cityIcon{
+#cityIcon {
     height: 30px;
-    
+
 }
 
 
-#temperaturaIcon{
+#temperaturaIcon {
     height: 30px;
 }
 
 
-#umidadeIcon{
+#umidadeIcon {
     height: 30px;
 }
 
-#ventoIcon{
+#ventoIcon {
     /* position: relative; */
     height: 30px;
     right: 10px;
 }
 
-#climaResult{
+#climaResult {
     display: none;
     width: 350px;
     height: 150px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    
+
 }
 
-.icons{
+.icons {
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-evenly;
@@ -104,7 +107,7 @@ button {
     width: 300vh;
 }
 
-#descricaoIcon{
+#descricaoIcon {
     position: center;
     height: 30px;
     width: 30px;
@@ -129,7 +132,7 @@ button {
 .lupa {
     display: none;
     justify-content: flex-end;
-    align-items:flex-start;
+    align-items: flex-start;
     width: 100%;
     margin-bottom: 25%;
 
@@ -140,10 +143,88 @@ button {
     transition: 2s;
 }
 
-.lupa img{
-    height: 100vh;
+.lupa img {
+    height: 4vh;
     width: 30px;
     border-radius: 5px;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 1200px) {
+    .forminteiro {
+        height: 525px;
+    }
+
+    #climaResult {
+        display: block;
+        font-size: 15px;
+        width: 250px;
+        height: 150px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        display: none;
+    }
+
+    .icons {
+        display: flex;
+    }
+
+    #cityIcon {
+        height: 40px;
+
+    }
+
+
+    #temperaturaIcon {
+        height: 40px;
+    }
+
+
+    #umidadeIcon {
+        height: 40px;
+    }
+
+    #ventoIcon {
+        height: 40px;
+
+    }
+
+    body{
+        height: 94.8vh;
+    }
+
+}
+
+@media (max-width: 640px) {
+
+    #cityIcon {
+        height: 40px;
+
+    }
+
+
+    #temperaturaIcon {
+        height: 40px;
+    }
+
+
+    #umidadeIcon {
+        height: 40px;
+    }
+
+    #ventoIcon {
+        height: 40px;
+    }
+
+    #descricaoIcon {
+        height: 40px;
+    }
+
+    .forminteiro {
+        height: 450px;
+        width: 55%;
+    }
+
 }
