@@ -1,18 +1,27 @@
-const express = require ('express');
-const axios = require ('axios');
-const path = require ('path');
-const cors = require ('cors');
-const config = require('./config.json');
+// Importando módulos
+const express = require('express'); // Cria servidores web
+const axios = require('axios'); // Faz requisições HTTP
+const path = require('path'); // Trabalha com caminhos de arquivos
+const cors = require('cors'); // Permite acesso à API de diferentes origens
+const config = require('./config.json'); // Contém a chave da API do OpenWeatherMap
+
+// API key do OpenWeatherMap
 const apikey = config.apikey;
 
+// Configurando servidor Express
 const app = express();
-app.listen(3000);
+app.listen(3000); // Porta 3000
 
+// Habilitando CORS
 app.use(cors());
+
+// Permitindo recebimento de JSON
 app.use(express.json());
+
+// Servindo arquivos estáticos da pasta `public`
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+// Dicionário de tradução de clima
 const traducaoClima= {
     'thunderstorm with light rain': 'trovoada com chuva fraca',
     'thunderstorm with rain': 'trovoada com chuva',
@@ -72,29 +81,43 @@ const traducaoClima= {
 
 app.get('/climatempo/:cidade', async (req, res) => {
 
+    // Obtém o nome da cidade da URL
     const city = req.params.cidade;
-   
-
-    try{
-        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`);
-
-            if(response.status === 200){
-
-                const clima = traducaoClima[response.data.weather[0].description] || response.data.weather[0].description;
-
-                const weatherData = {
-                    Temperatura: response.data.main.temp,
-                    Umidade: response.data.main.humidity,
-                    VelocidadeDoVento: response.data.wind.speed,
-                    Clima: clima
-                };
-
-                res.send(weatherData)   
-        } else {
-                res.status(response.status).send({erro: 'Erro ao obter dados meteorológicos'})
-        }
-
+  
+    // Requisição para a API do OpenWeatherMap
+    try {
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`);
+  
+      // Se a requisição for bem-sucedida
+      if (response.status === 200) {
+  
+        // Obtém a descrição do clima em inglês
+        const climaEmIngles = response.data.weather[0].description;
+  
+        // Traduz a descrição do clima para português
+        const clima = traducaoClima[climaEmIngles] || climaEmIngles;
+  
+        // Cria um objeto com os dados meteorológicos
+        const weatherData = {
+          Temperatura: response.data.main.temp,
+          Umidade: response.data.main.humidity,
+          VelocidadeDoVento: response.data.wind.speed,
+          Clima: clima
+        };
+  
+        // Envia os dados meteorológicos como resposta
+        res.send(weatherData);
+  
+      } else {
+  
+        // Envia um erro com o código de status
+        res.status(response.status).send({ erro: 'Erro ao obter dados meteorológicos' });
+  
+      }
     } catch (error) {
-        res.status(500).send({erro:'Erro ao obter dados metereológicos', error });
+  
+      // Envia um erro genérico
+      res.status(500).send({ erro: 'Erro ao obter dados meteorológicos', error });
+  
     }
-})
+  });

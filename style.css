@@ -1,4 +1,6 @@
+/* Estilos para o formulário de consulta */
 .forminteiro {
+    /* Estilo do fundo */
     background: transparent;
     backdrop-filter: blur(70px);
     border: 2px solid rgba(255, 255, 255, 0.5);
@@ -19,21 +21,21 @@
     margin: 0 auto;
     margin-top: 3%;
 }
-
+/* Estilo para o título do formulário */
 h1 {
     color: rgba(255, 255, 255, 0.5);
     font-family: "Kdam Thmor Pro", sans-serif;
     margin: auto;
     font-size: 24px;
 }
-
+/* Estilos para o formulário de consulta do clima */
 #formclima {
     padding: 10%;
     text-align: center;
     transition-duration: 1s;
 
 }
-
+/* Estilos para o fundo da página */
 body {
 
     margin: 0;
@@ -45,13 +47,13 @@ body {
     transition: 3s;
     height: 78vh;
 }
-
+/* Fonte personalizada */
 .kdam-thmor pro-regular {
     font-family: "Kdam Thmor Pro", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
-
+/* Estilos para o botão de consulta */
 button {
     width: 80%;
     height: 30px;
@@ -66,7 +68,7 @@ button {
     margin-top: 15vh;
     transition: all 2s ease;
 }
-
+/* Estilos para os ícones */
 #cityIcon {
     height: 30px;
 
@@ -97,7 +99,7 @@ button {
     justify-content: space-between;
 
 }
-
+/* Estilos para os ícones */
 .icons {
     display: flex;
     flex-direction: column-reverse;
@@ -113,7 +115,7 @@ button {
     width: 30px;
     right: 10px;
 }
-
+/* Estilos para a descrição do clima */
 .descricao {
     display: flex;
     justify-content: center;
@@ -128,7 +130,7 @@ button {
     justify-content: center;
     align-items: center;
 }
-
+/* Estilos para a lupa */
 .lupa {
     display: none;
     justify-content: flex-end;
@@ -150,7 +152,7 @@ button {
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.5);
 }
-
+/* Media query para telas menores que 1200px */
 @media (max-width: 1200px) {
     .forminteiro {
         height: 525px;
@@ -196,7 +198,7 @@ button {
     }
 
 }
-
+/* Media query para telas menores que 640px */
 @media (max-width: 640px) {
 
     #cityIcon {

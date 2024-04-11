@@ -12,22 +12,27 @@
 </head>
 
 <body>
+    <!-- Formulário para consulta do clima -->
     <div class="forminteiro">
         <form id="formclima" class="form-texto">
             <h1>Consulta do Clima</h1>
-
+          <!-- Input para inserir o nome da cidade -->
             <input type="text" id="cityInput" name="cityInput" placeholder="Cidade"> <br>
+            <!-- Botão para enviar a consulta -->
             <button type="submit">Consultar</button>
         </form>
-
+         <!-- Ícone de lupa -->
         <div id="lupa" class="lupa">
             <a href="index.html"><img src="./icones/lupa.png" alt="LUPA"></a>
         </div>
+        <!-- Div para mostrar os resultados do clima -->
         <div class="segundaTela">
+             <!-- Descrição do clima -->
             <div id="descricao1" class="descricao">
                 <img id="descricaoIcon" src="" alt="Ícone descrição">
                 <p id="descricao"></p>
             </div>
+            <!-- Resultados do clima -->
             <div id="climaResult">
                 <div class="icons">
                     <p id="city"></p>
@@ -47,7 +52,7 @@
                 </div>
             </div>
         </div>
-
+         <!-- Importa o arquivo JavaScript -->
         <script src="script.js"></script>
 
 </body>
