@@ -19,8 +19,8 @@ app.use(cors());
 app.use(express.json());
 
 // Servindo arquivos estáticos da pasta `public`
-app.use(express.static(path.join(__dirname, '/')));
-app.use(express.static(path.join(__dirname, './icones/')));
+app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/icones/'));
 
 app.get('/index',(req, res) => {
   res.sendFile(__dirname + '/index.html')
