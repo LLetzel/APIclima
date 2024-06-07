@@ -19,7 +19,12 @@ app.use(cors());
 app.use(express.json());
 
 // Servindo arquivos estáticos da pasta `public`
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static(path.join(__dirname, './icones/')));
+
+app.get('/index',(req, res) => {
+  res.sendFile(__dirname + '/index.html')
+}) 
 
 // Dicionário de tradução de clima
 const traducaoClima= {

@@ -66,7 +66,7 @@ document.getElementById('formclima').addEventListener('submit', function (event)
     const city = document.getElementById('cityInput').value;
   
     // Faz uma requisição para a API de clima, passando a cidade como parâmetro
-    fetch(`http://localhost:3000/climatempo/${city}`)
+    fetch(`http://20.81.40.107:3000/climatempo/${city}`)
       .then(response => response.json()) // Converte a resposta para JSON
       .then(data => {
   
