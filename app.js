@@ -6,7 +6,7 @@ const cors = require('cors'); // Permite acesso à API de diferentes origens
 const config = require('./config.json'); // Contém a chave da API do OpenWeatherMap
 
 // API key do OpenWeatherMap
-const apikey = config.apikey;
+const apikey = config.APIkey;
 
 // Configurando servidor Express
 const app = express();
