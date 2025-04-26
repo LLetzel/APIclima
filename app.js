@@ -4,13 +4,19 @@ const axios = require('axios'); // Faz requisições HTTP
 const path = require('path'); // Trabalha com caminhos de arquivos
 const cors = require('cors'); // Permite acesso à API de diferentes origens
 const config = require('./config.json'); // Contém a chave da API do OpenWeatherMap
+const PORT = 3000;
+
+// Configurando servidor Express
+const app = express();
+app.listen(3000, 'localhost', () => {
+  console.log('Servidor rodando em http://localhost:3000');
+});
 
 // API key do OpenWeatherMap
 const apikey = config.APIkey;
 
-// Configurando servidor Express
-const app = express();
-app.listen(3000); // Porta 3000
+
+
 
 // Habilitando CORS
 app.use(cors());
@@ -21,6 +27,7 @@ app.use(express.json());
 // Servindo arquivos estáticos da pasta `public`
 app.use(express.static(__dirname + '/'));
 app.use(express.static(__dirname + '/icones/'));
+app.use(express.static(__dirname + '/gif/'));
 
 app.get('/index',(req, res) => {
   res.sendFile(__dirname + '/index.html')

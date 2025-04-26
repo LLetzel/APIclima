@@ -4,57 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta do Clima</title>
+    <title>WeatherNow | Consulta de Clima</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Fontes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Weather Icons - Biblioteca de ícones meteorológicos animados -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+    
+    <!-- Font Awesome para ícones de interface -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <meta name="description" content="Aplicativo de previsão do tempo com design moderno e informações meteorológicas atualizadas.">
 </head>
 
 <body>
-    <!-- Formulário para consulta do clima -->
     <div class="forminteiro">
-        <form id="formclima" class="form-texto">
-            <h1>Consulta do Clima</h1>
-          <!-- Input para inserir o nome da cidade -->
-            <input type="text" id="cityInput" name="cityInput" placeholder="Cidade"> <br>
-            <!-- Botão para enviar a consulta -->
-            <button type="submit">Consultar</button>
-        </form>
-         <!-- Ícone de lupa -->
-        <div id="lupa" class="lupa">
-            <a href="index.html"><img src="./icones/lupa.png" alt="LUPA"></a>
+        <!-- Botão de voltar redesenhado -->
+        <div id="back-button" class="back-button">
+            <i class="fas fa-arrow-left"></i>
         </div>
-        <!-- Div para mostrar os resultados do clima -->
+        
+        <!-- Formulário para consulta do clima -->
+        <form id="formclima" class="form-texto">
+            <h1>
+                <i class="wi wi-day-cloudy logo-icon"></i>
+                Weather<span style="color: var(--accent-color);">Now</span>
+            </h1>
+            
+            <!-- Input para inserir o nome da cidade com ícone -->
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="cityInput" name="cityInput" placeholder="Digite o nome da cidade..." required>
+            </div>
+            
+            <!-- Botão para enviar a consulta -->
+            <button type="submit">
+                <i class="fas fa-cloud-sun"></i>
+                <span>Consultar Clima</span>
+            </button>
+        </form>
+
+        <!-- Tela de resultados -->
         <div class="segundaTela">
-             <!-- Descrição do clima -->
+            <!-- Descrição do clima -->
             <div id="descricao1" class="descricao">
-                <img id="descricaoIcon" src="./icones/clima.png" alt="Ícone descrição">
+                <i id="descricaoIcon" class="wi wi-day-cloudy"></i>
                 <p id="descricao"></p>
             </div>
+
             <!-- Resultados do clima -->
             <div id="climaResult">
                 <div class="icons">
-                    <p id="city"></p>
-                    <img id="cityIcon" src="./icones/cidade.png" alt="">
+                    <p id="city">Cidade</p>
+                    <i class="fas fa-city"></i>
                 </div>
                 <div class="icons">
-                    <p id="temperatura"></p>
-                    <img id="temperaturaIcon" src="./icones/termometro.png" alt="Ícone temperatura">
+                    <p id="temperatura">0°C</p>
+                    <i class="fas fa-temperature-high"></i>
                 </div>
                 <div class="icons">
-                    <p id="umidade"></p>
-                    <img id="umidadeIcon" src="./icones/umidade.png" alt="Ícone umidade">
+                    <p id="umidade">0%</p>
+                    <i class="fas fa-tint"></i>
                 </div>
                 <div class="icons">
-                    <p id="vento"></p>
-                    <img id="ventoIcon" src="./icones/vento.png" alt="ícone vento">
+                    <p id="vento">0m/s</p>
+                    <i class="fas fa-wind"></i>
                 </div>
             </div>
         </div>
-         <!-- Importa o arquivo JavaScript -->
-        <script src="script.js"></script>
+        
+        <!-- Elemento para o indicador de carregamento (adicionado pelo JS) -->
+        <!-- <div class="loading">
+            <div class="loader"></div>
+        </div> -->
+    </div>
 
+    <!-- Script JS -->
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,128 +1,249 @@
-function neblina() {
-    var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/neblina.gif")'; // Define a imagem de fundo
-    body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-    body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
-}
-function sol() {
-    var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/sun.gif")'; // Define a imagem de fundo
-    body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-    body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
+// Função para alternar a exibição de elementos
+function toggleDisplay(element, displayStyle) {
+  if (element) {
+    element.style.display = displayStyle;
+  }
 }
 
-function chuvaleve() {
-    var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/chuvaleve.gif")'; // Define a imagem de fundo
-    body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-    body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
+// Função para aplicar backgrounds com base no clima
+function aplicarBackground(clima) {
+  const body = document.querySelector('body');
+  
+  // Remove todas as classes de background antigas
+  body.classList.remove('sol-bg', 'nublado-bg', 'chuva-bg', 'tempestade-bg', 'neblina-bg');
+  
+  // Condicional para adicionar a classe correta baseada no clima
+  if (clima.includes('ceu limpo')) {
+    body.classList.add('sol-bg');
+  } else if (clima.includes('nublado') || clima.includes('muitas nuvens')) {
+    body.classList.add('nublado-bg');
+  } else if (clima.includes('nuvens') || clima.includes('poucas nuvens') || clima.includes('dispersas')) {
+    body.classList.add('nublado-bg');
+  } else if (clima.includes('chuva leve') || clima.includes('garoa') || clima.includes('chuvisco')) {
+    body.classList.add('chuva-bg');
+  } else if (clima.includes('neblina') || clima.includes('fumaça') || clima.includes('névoa')) {
+    body.classList.add('neblina-bg');
+  } else if (clima.includes('tempestade') || clima.includes('trovoada')) {
+    body.classList.add('tempestade-bg');
+  } else {
+    // Default para clima não definido especificamente
+    body.classList.add('sol-bg');
+  }
 }
 
-function banhodechuva() {
-    var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/banhodechuva.gif")'; // Define a imagem de fundo
-    body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-    body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
+// Função para criar partículas decorativas
+function criarParticulas() {
+  const container = document.createElement('div');
+  container.className = 'weather-particles';
+  document.body.appendChild(container);
+  
+  // Aumentamos a quantidade e tamanho das partículas para torná-las mais visíveis
+  const particlesCount = Math.min(50, window.innerWidth / 8);
+  
+  for (let i = 0; i < particlesCount; i++) {
+    const particle = document.createElement('span');
+    particle.className = 'weather-particle';
+    
+    // Configurações randômicas para as partículas - aumentamos tamanho e opacidade
+    const size = Math.random() * 10 + 3; // Partículas maiores
+    const posX = Math.random() * 100;
+    const posY = Math.random() * 100;
+    const delay = Math.random() * 2;
+    const duration = Math.random() * 5 + 3; // Duração mais longa
+    
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.left = `${posX}%`;
+    particle.style.top = `${posY}%`;
+    particle.style.opacity = Math.random() * 0.5 + 0.5; // Mais opacas
+    particle.style.animation = `floating ${duration}s linear infinite ${delay}s`;
+    
+    container.appendChild(particle);
+  }
 }
 
-function nublado() {
-    var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/nublado.gif")'; // Define a imagem de fundo
-    body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-    body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
+// Função para animar transições entre telas
+function transitionScreens(fromElement, toElement) {
+  if (fromElement) {
+    fromElement.classList.add('hiding');
+    fromElement.style.display = 'none';
+  }
+  
+  setTimeout(() => {
+    if (toElement) {
+      toggleDisplay(toElement, 'flex');
+      toElement.classList.add('showing');
+    }
+  }, 300);
 }
 
-function nuvensseparadas() {
-    var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/nuvensseparadas.gif")'; // Define a imagem de fundo
-    body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-    body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
+// Função para formatar primeira letra maiúscula
+function primeiraLetraMaiuscula(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function neveleve() {
-    var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/neve.gif")'; // Define a imagem de fundo
-    body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-    body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
+// Adicionar indicador de carregamento
+function adicionarLoading() {
+  // Verifica se já existe um loading
+  let loading = document.querySelector('.loading');
+  
+  if (!loading) {
+    loading = document.createElement('div');
+    loading.className = 'loading';
+    
+    const loader = document.createElement('div');
+    loader.className = 'loader';
+    
+    loading.appendChild(loader);
+    document.querySelector('.forminteiro').appendChild(loading);
+  }
+  
+  loading.style.display = 'flex';
 }
 
-function tempestade() {
-    var body = document.querySelector('body'); // Seleciona a tag body
-    body.style.backgroundImage = 'url("./gif/tempestade.gif")'; // Define a imagem de fundo
-    body.style.backgroundSize = "cover"; // Ajusta o tamanho da imagem para cobrir todo o fundo
-    body.style.backgroundRepeat = "no-repeat"; // Evita que a imagem se repita
+function removerLoading() {
+  const loading = document.querySelector('.loading');
+  if (loading) {
+    loading.style.display = 'none';
+  }
 }
 
-function primeiraLetraMaiuscula(str) { // Retorna a primeira letra da string em maiúscula e o restante da string
-    return str.charAt(0).toUpperCase() + str.slice(1);
+// Função para atualizar ícones com base no clima
+function atualizarIcones(clima) {
+  // Mapeamento de condições climáticas para ícones Font Awesome Weather
+  const iconesClima = {
+    'ceu limpo': 'wi wi-day-sunny',
+    'poucas nuvens': 'wi wi-day-cloudy',
+    'nuvens dispersas': 'wi wi-cloud',
+    'nuvens separadas': 'wi wi-cloudy',
+    'muitas nuvens': 'wi wi-cloudy',
+    'chuva leve': 'wi wi-day-rain',
+    'chuvisco': 'wi wi-day-sprinkle',
+    'chuva': 'wi wi-rain',
+    'garoa': 'wi wi-sprinkle',
+    'neblina': 'wi wi-fog',
+    'névoa': 'wi wi-fog',
+    'tempestade': 'wi wi-thunderstorm',
+    'trovoada': 'wi wi-lightning',
+    'neve': 'wi wi-snow',
+    'banho de chuva': 'wi wi-showers',
+    'default': 'wi wi-cloud'
+  };
+
+  // Escolher o ícone certo para o clima atual
+  let iconeClima = 'wi wi-day-cloudy'; // Ícone padrão
+  
+  // Encontrar o ícone mais adequado
+  for (const [condicao, icone] of Object.entries(iconesClima)) {
+    if (clima.includes(condicao)) {
+      iconeClima = icone;
+      break;
+    }
+  }
+  
+  // Atualizar o ícone na interface
+  const descricaoIconElement = document.getElementById('descricaoIcon');
+  if (descricaoIconElement) {
+    descricaoIconElement.className = iconeClima;
+  }
 }
 
-document.getElementById('formclima').addEventListener('submit', function (event) {
-
-    // Previne o comportamento padrão do evento de submit
+// Quando o documento estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+  // Criar elementos de partículas para decoração
+  criarParticulas();
+  
+  // Configurar evento de formulário
+  const formClima = document.getElementById('formclima');
+  const resultadoClima = document.getElementById('climaResult');
+  const backButton = document.getElementById('back-button');
+  const segundaTela = document.querySelector('.segundaTela');
+  const descricao1 = document.getElementById('descricao1');
+  
+  // Garantir que os elementos iniciem com a exibição correta
+  toggleDisplay(resultadoClima, 'none');
+  toggleDisplay(backButton, 'none');
+  toggleDisplay(segundaTela, 'none');
+  toggleDisplay(descricao1, 'none');
+  
+  formClima.addEventListener('submit', function(event) {
     event.preventDefault();
-  
-    // Obtém o valor da cidade digitada pelo usuário
-    const city = document.getElementById('cityInput').value;
-  
-    // Faz uma requisição para a API de clima, passando a cidade como parâmetro
-    fetch(`http://20.81.40.107:3000/climatempo/${city}`)
-      .then(response => response.json()) // Converte a resposta para JSON
+    
+    // Mostrar indicador de carregamento
+    adicionarLoading();
+    
+    // Obter cidade digitada
+    const city = document.getElementById('cityInput').value.trim();
+    
+    if (!city) {
+      alert('Por favor, digite o nome de uma cidade');
+      removerLoading();
+      return;
+    }
+    
+    // Fazer requisição à API
+    fetch(`http://localhost:3000/climatempo/${encodeURIComponent(city)}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Cidade não encontrada');
+        }
+        return response.json();
+      })
       .then(data => {
-  
-        // Obtém o elemento que irá mostrar o resultado da consulta
-        const tempoResult = document.getElementById('climaResult');
-  
-        // Se a API retornar dados da cidade
         if (data.Temperatura) {
-  
-          // Exibe o nome da cidade com a primeira letra maiúscula
+          // Preencher dados do clima
           document.getElementById('city').textContent = primeiraLetraMaiuscula(city);
-  
-          // Exibe a temperatura
           document.getElementById('temperatura').textContent = `${data.Temperatura}°C`;
-  
-          // Exibe a umidade
           document.getElementById('umidade').textContent = `${data.Umidade}%`;
-  
-          // Exibe a velocidade do vento
           document.getElementById('vento').textContent = `${data.VelocidadeDoVento}m/s`;
-  
-          // Exibe a descrição do clima
           document.getElementById('descricao').textContent = `${data.Clima}`;
+          
+          // Atualizar ícones baseados no clima
+          atualizarIcones(data.Clima);
+          
+          // Esconder formulário
+          formClima.style.display = 'none';
+          
+          // Mostrar elementos de resultado
+          toggleDisplay(resultadoClima, 'flex');
+          toggleDisplay(descricao1, 'flex');
+          toggleDisplay(backButton, 'flex');
+          toggleDisplay(segundaTela, 'flex');
+          
+          // Aplicar background com base no clima
+          aplicarBackground(data.Clima);
+        } else {
+          alert('Erro ao obter dados meteorológicos');
+        }
+      })
+      .catch(error => {
+        console.error('Erro na requisição:', error);
+        alert('Erro ao buscar dados climáticos. Verifique o nome da cidade e tente novamente.');
+      })
+      .finally(() => {
+        removerLoading(); // Remover indicador de carregamento independentemente do resultado
+      });
+  });
   
-          // Mostra o resultado da consulta
-          document.getElementById('climaResult').style.display = 'flex';
-          document.getElementById('descricao1').style.display = 'flex';
-          document.getElementById('lupa').style.display = 'flex';
-          document.getElementById('formclima').style.display = 'none';
-  
-          // Define os ícones para cada informação
-          const temperaturaIcon = document.getElementById('temperaturaIcon');
-          const umidadeIcon = document.getElementById('umidadeIcon');
-          const ventoIcon = document.getElementById('ventoIcon');
-          const descricaoIcon = document.getElementById('descricaoIcon');
-  
-          // Define a imagem de acordo com o clima
-          if (data.Clima == 'ceu limpo') {
-            sol();
-          } else if (data.Clima == 'Nublado' || data.Clima == 'muitas nuvens') {
-            nublado();
-          } else if (data.Clima == 'nuvens separadas' || data.Clima == 'nuvens dispersas' || data.Clima == 'poucas nuvens' || data.Clima == 'Nuvens nubladas'){
-            nuvensseparadas()
-          } else if (data.Clima == 'leve chuva' || data.Clima == 'garoa leve' || data.Clima == 'chuvisco de baixa intensidade' || data.Clima == 'chuvisco' || data.Clima == 'chuva e garoa' || data.Clima == 'chuva leve') {
-            chuvaleve();
-          } else if (data.Clima == 'neblina' || data.Clima == 'fumaça' || data.Clima == 'névoa' || data.Clima == 'poeira' || data.Clima == 'areia' || data.Clima == 'ventania') {
-            neblina();
-          } else if (data.Clima == 'banho de chuva' || data.Clima == 'chuva media' || data.Clima == 'chuva moderada' || data.Clima == 'banho de chuva irregular' || data.Clima == 'chuvisco forte' || data.Clima == 'chuva forte com garoa' || data.Clima == 'chuvisco de alta intensidade') {
-            banhodechuva();
-                } else if (data.Clima == 'tempestade' || data.Clima == 'forte tempestade' || data.Clima == 'tempestade irregular' || data.Clima == 'trovoada com chuva fraca' || data.Clima == 'trovoada com chuva' || data.Clima == 'trovoada com chuva forte' || data.Clima == 'trovoada leve' || data.Clima == 'trovoada' || data.Clima == 'trovoada com leve garoa' || data.Clima == 'trovoada com garoa' || data.Clima == 'trovoada com forte garoa') {
-                    tempestade();
-                }
-
-            } else {
-                tempoResult.innerHTML = "Erro ao obter dados metereologicos";
-            }
-        })
-        .catch((error) => console.error("Erro ao obter dados"));
+  // Configurar botão de voltar
+  if (backButton) {
+    backButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      // Ocultar resultados
+      toggleDisplay(resultadoClima, 'none');
+      toggleDisplay(descricao1, 'none');
+      toggleDisplay(backButton, 'none');
+      toggleDisplay(segundaTela, 'none');
+      
+      // Mostrar formulário de busca
+      toggleDisplay(formClima, 'block');
+      
+      // Resetar o formulário
+      formClima.reset();
+      
+      // Resetar background
+      document.body.className = '';
+    });
+  }
 });
