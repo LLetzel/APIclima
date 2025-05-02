@@ -140,6 +140,7 @@
     position: relative;
     width: 100%;
     margin-bottom: 1rem;
+    color: var(--text-dark);
   }
   
   input[type="text"] {
@@ -150,7 +151,7 @@
     border-radius: var(--radius-md);
     background: rgba(255, 255, 255, 0.25);
     font-size: 1rem;
-    color: var(--text-light);
+    color: var(--text-dark);
     font-weight: 500;
     transition: var(--transition);
     backdrop-filter: blur(5px);
@@ -233,6 +234,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    color: var(--text-dark);
   }
   
   .recent-search-item {
@@ -240,7 +242,7 @@
     border-radius: var(--radius-sm);
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: var(--text-dark);
     cursor: pointer;
     transition: var(--transition);
     display: flex;
